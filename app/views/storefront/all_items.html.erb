@@ -1,5 +1,5 @@
-<h1>Welcome to the TTS Store</h1>
-<p>We accept your money!!!</p>
+<h1>Welcome to Tech Talent Store!</h1>
+<p>We accept all forms of cash!</p>
 
 <div class="row">
 	<% @products.each do |product| %>
@@ -9,26 +9,24 @@
 					<div style="height:150px;">
 						<%= image_tag product.image.url(:thumb) %>
 					</div>
-					<p><a href="#" data-toggle="modal" data-target="#myModal_ <%= product.id %>">
-						<span class="glyphicon glyphicon-plus"></span>
-						quick info
+					<p><a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
+						<span class="glyphicon glyphicon-plus"></span> quick info
 					</a></p>
 					<p><strong><%= number_to_currency product.price %></strong></p>
 					<p><%= product.name %></p>
-						<div style="height:150px;">
-							<p><%= product.description %></p>
-						</div>
+					<div style="height:150px;">
+						<p><%= product.description %></p>
+					</div>
 					<p>Made by: <%= product.brand %></p>
 					<p>
 						<%# product.rating.times do %>
-							<!--span class="glyphicon glyphicon-star yellow"></span -->
+							<!-- <span class="glyphicon glyphicon-star yellow"></span> -->
 						<%# end %>
 					</p>
 				</div>
 			</div>
 		</div>
-		<!-- Modal -->
-		<div class="modal fade" id="#myModal_ <%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -48,5 +46,3 @@
 		</div>
 	<% end %>
 </div>
-
-
