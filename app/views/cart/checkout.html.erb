@@ -7,7 +7,7 @@
 	</ul>
 <% end %>
 <div>
-	<!-- <p>We will ship this order to:</p>
+	<p>We will ship this order to:</p>
 	<p></p>
 	<p>
 		<%= current_user.name %><br />
@@ -17,8 +17,27 @@
 
 	<p> Incorrect address> <%= link_to "Edit Shipping Information", edit_user_registration_path, class: "btn btn-primary" %>
 </div>
- -->
-
 
 <strong>Order Total:</strong> <%= number_to_currency @order.grand_total%>
 </p>
+
+<div>
+  <%= form_tag order_complete_path do %>
+  
+	  <article>
+	      <label class="amount">
+	          <span><%= number_to_currency @order.grand_total %></span>
+	      </label>
+	  </article>
+	  <div class="cant-see-me">
+	  	<%= number_field_tag :order_id, @order.id %>
+		</div>
+
+	  <script src="https://checkout.stripe.com/checkout.js" 
+	   class="stripe-button" 
+	   data-key="<%= Rails.configuration.stripe[:publishable_key] %>" 
+	   data-description="Order #<%= @order.id %>" 
+	   data-amount="<%= (@order.grand_total.to_f.round(2) * 100)  %>"></script>
+  
+  <% end %>
+</div>

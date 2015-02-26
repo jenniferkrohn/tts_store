@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'charges/create'
-
-  get 'charges/new'
+  post 'order_complete' => 'cart#order_complete'
 
   resources :charges
 # end
