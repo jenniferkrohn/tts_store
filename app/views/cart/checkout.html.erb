@@ -1,10 +1,24 @@
 <h1>Thanks for shopping with us</h1>
 <p>Please review your order:</p>
 
-<% @order.line_items.each do |line_item| %>
+<% @order.order_items.each do |key, value| %>
 	<ul>
-		<li><%= line_item.quantity %> - <%= line_item.name %></li>
+		<li><%= Product.find(key).name %> - <%= value %></li>
 	</ul>
-
 <% end %>
-<strong>Order Total:</strong> <%= @order.grand_total%>
+<div>
+	<!-- <p>We will ship this order to:</p>
+	<p></p>
+	<p>
+		<%= current_user.name %><br />
+		<%= current_user.street_address %><br />
+		<%= current_user.city %>, <%= current_user.state %>  <%= current_user.zip %>
+	</p>
+
+	<p> Incorrect address> <%= link_to "Edit Shipping Information", edit_user_registration_path, class: "btn btn-primary" %>
+</div>
+ -->
+
+
+<strong>Order Total:</strong> <%= number_to_currency @order.grand_total%>
+</p>

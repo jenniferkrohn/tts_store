@@ -23,11 +23,11 @@ class CartController < ApplicationController
   	@order = Order.new
   	@order.user_id = current_user.id
   	
-  	@line_items.each do |line_item|
-  		@order.line_items.push(line_item)
-  	end
+      sum = 0
 
-  	sum = 0
+  	@line_items.each do |line_item|
+  		@order.order_items[line_item.product_id] = line_item.quantity
+  	end
 
   	@line_items.each do |line_item|
   		sum += line_item.line_item_total
@@ -45,4 +45,5 @@ class CartController < ApplicationController
 
   	LineItem.destroy_all
   end
+
 end
